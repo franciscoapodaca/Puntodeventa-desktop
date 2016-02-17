@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteComprasTotales" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c7d041b1-bbf5-41b3-9d42-3650b7ecbf75">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select * from Compras]]>
+	</queryString>
+	<field name="id_compra" class="java.lang.Integer"/>
+	<field name="totalCompra" class="java.lang.Double"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<variable name="totalCompra_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalCompra}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="555" height="67" uuid="9dc32f88-a89d-4b3a-99b3-92a90ec85467"/>
+				<imageExpression><![CDATA["C:\\Users\\Francisco\\Desktop\\Version 8 Noviembre\\SpicyFactory\\src\\imagenes\\titleReporteCompras.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="21" y="1" width="100" height="20" uuid="1b7aed4e-3bfc-4945-9e41-8400a05feb3b"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[ID COMPRA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="426" y="1" width="120" height="20" uuid="93fa9095-66cb-4eda-bde7-15ce30981413"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[TOTAL COMPRA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="1" width="128" height="20" uuid="6155445c-e300-4d36-bf62-ce0c59f2b892"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[FECHA COMPRA:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="19" y="0" width="100" height="20" uuid="96e2e510-bbf2-4911-b690-b9f80cc4f69f"/>
+				<textFieldExpression><![CDATA[$F{id_compra}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="0" width="100" height="20" uuid="2b2a70d5-fe99-4757-b3a2-216865f1db61"/>
+				<textFieldExpression><![CDATA[$F{totalCompra}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="237" y="1" width="100" height="20" uuid="d864e2d2-687f-4c38-a2bf-9123d1ef8a82"/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="427" y="0" width="9" height="19" uuid="ca9d2b59-a693-4720-a467-f7491b8fb420"/>
+				<text><![CDATA[$]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="14" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="515" height="13" backcolor="#E6E6E6" uuid="42c982ae-d33d-4c8e-88af-4886a136143f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="0" width="40" height="13" backcolor="#E6E6E6" uuid="cb49b4a5-9e2a-4ebc-8e3e-1d0d212d8bed"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="19" y="0" width="100" height="13" uuid="2b498368-0542-4aa2-8416-d4d02bf821af"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="426" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement x="0" y="44" width="555" height="366" uuid="9374d2b0-ed30-45b9-90ea-aa494bf8415b"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{id_compra}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{id_compra}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{totalCompra}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+			<staticText>
+				<reportElement x="202" y="0" width="157" height="28" uuid="dcd6df89-2828-424d-ba0a-8ae5d22642b2"/>
+				<textElement>
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUMA TOTAL:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="371" y="1" width="184" height="29" uuid="665597ac-1485-4e65-82b6-add413db0c20"/>
+				<textElement>
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalCompra_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="357" y="0" width="19" height="31" uuid="1bad9602-4481-4b72-a3a4-11159d3f9531"/>
+				<textElement>
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[$]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

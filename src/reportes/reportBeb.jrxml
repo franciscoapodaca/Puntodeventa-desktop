@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportBeb" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1cc9f159-b3dd-438e-be5f-d92515b78eaf">
+	<property name="ireport.zoom" value="1.100000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="FECHAINICIO" class="java.lang.String"/>
+	<parameter name="FECHAFIN" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+	COUNT (db.id_bebida) 'BEBIDA', nombre
+FROM
+	DetalleBebida db, Bebida b, Venta v
+
+WHERE
+	v.id_Venta=db.id_Venta AND b.id_bebida=db.id_bebida
+	AND fecha BETWEEN $P{FECHAINICIO} AND $P{FECHAFIN}
+GROUP BY
+	nombre]]>
+	</queryString>
+	<field name="BEBIDA" class="java.lang.Integer"/>
+	<field name="nombre" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="-20" width="595" height="92" forecolor="#FFFFFF" backcolor="#006699" uuid="c98a610d-e674-4bdc-947d-0d6543e02f8b"/>
+				<staticText>
+					<reportElement x="20" y="10" width="462" height="43" forecolor="#FFFFFF" uuid="167cfe9d-6ecc-402a-989a-ddebc049a077"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[REPORTE BEBIDAS]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="20" y="72" width="180" height="20" forecolor="#FFFFFF" uuid="1ec4fcb8-cb55-4983-961e-0515241b246a"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="false" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[Bebidas mas Vendidas]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="361" y="63" width="121" height="19" forecolor="#FFFFFF" uuid="6897f349-bdae-4d6b-8cbe-15d9f9daa5c1"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{FECHAINICIO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="501" y="63" width="94" height="20" forecolor="#FFFFFF" uuid="b01c49f7-c100-4ffb-be8e-ec44aa56db27"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{FECHAFIN}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="298" y="63" width="98" height="29" forecolor="#FFFFFF" uuid="40b028f9-bae9-4dcc-98d4-a58dc60de5ac"/>
+					<textElement>
+						<font size="16" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[DESDE:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="438" y="63" width="63" height="29" forecolor="#FFFFFF" uuid="e45e262b-3466-4999-bbf2-ef13a89783e6"/>
+					<textElement>
+						<font size="16" isBold="true" isItalic="true"/>
+					</textElement>
+					<text><![CDATA[HASTA:]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement x="-20" y="20" width="595" height="1" forecolor="#666666" uuid="034533c2-79b2-4bca-853b-6f25f2c43dfd"/>
+			</line>
+			<staticText>
+				<reportElement mode="Opaque" x="278" y="0" width="277" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="892065d2-432f-4816-ba61-98528a99f11c"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD VENDIDA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="277" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="51fea409-3648-4992-825e-75eecae23d9a"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BEBIDA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="f7c52ac5-357e-4071-8a07-a9bd04485e7f"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="359" y="0" width="196" height="20" uuid="29ca1c40-7718-49e3-bb18-2c1e0a8fb7d3"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BEBIDA}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="27" y="0" width="250" height="20" uuid="eaf0edb8-a109-42e8-b91c-bfb4b67cca55"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="441" y="0" width="40" height="19" uuid="5b5f30fe-b9e8-436f-960f-0da13beb106c"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[veces.]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6" uuid="da4672f5-e9ad-4da7-bf87-444fe1d61fdb"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6" uuid="7729f4db-f432-4b26-a698-462d1f956dad"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="0" y="4" width="100" height="13" uuid="4d8cfd1f-7426-4d5f-8cde-026a11e9b86f"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="802">
+			<pieChart>
+				<chart>
+					<reportElement x="0" y="0" width="555" height="802" uuid="8cfe1071-b9f5-4543-b4c4-ed9fdd03285e"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{nombre}]]></keyExpression>
+					<valueExpression><![CDATA[$F{BEBIDA}]]></valueExpression>
+				</pieDataset>
+				<piePlot>
+					<plot/>
+					<itemLabel/>
+				</piePlot>
+			</pieChart>
+		</band>
+	</summary>
+</jasperReport>

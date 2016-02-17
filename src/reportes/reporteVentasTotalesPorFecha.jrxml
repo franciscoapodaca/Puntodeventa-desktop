@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eaef5fd8-c891-4b43-b994-37a8a3b75dd6">
+	<property name="ireport.zoom" value="1.9487171000000072"/>
+	<property name="ireport.x" value="74"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="FECHAV" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select id_Venta, total from Venta
+where fecha = $P{FECHAV}]]>
+	</queryString>
+	<field name="id_Venta" class="java.lang.Integer"/>
+	<field name="total" class="java.lang.Double"/>
+	<variable name="id_Venta_SUM" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{id_Venta}]]></variableExpression>
+	</variable>
+	<variable name="total_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<variable name="total_2" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="92">
+			<textField>
+				<reportElement x="241" y="67" width="138" height="25" uuid="b968c8a8-22ae-4983-b2a5-8e7df34d7954"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="17" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FECHAV}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="0" width="555" height="67" uuid="996fdabe-ab1d-40a6-bf52-6e575942f766"/>
+				<imageExpression><![CDATA["C:\\Users\\Francisco\\Desktop\\Version 8 Noviembre\\SpicyFactory\\src\\imagenes\\titleReporteVentas.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="173" y="67" width="68" height="25" uuid="3c92ee9e-914f-4b50-824f-409e68f108fe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="22">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="20" backcolor="#FEFED9" uuid="8c030e4e-6a1c-4993-9b45-a4a31d638159"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="115" y="0" width="146" height="20" uuid="d23af456-0b56-494a-96ec-ced44c0dc389"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID VENTA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="318" y="0" width="113" height="20" uuid="07bd5e5b-ba9d-43e6-b3cc-793db5b8fbb5"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL VENTA:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField>
+				<reportElement x="104" y="0" width="136" height="26" uuid="e7956198-7d35-41dc-a93a-d7237e7ea8fc"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_Venta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="336" y="0" width="117" height="26" uuid="f9c9aa25-03eb-492d-9a9d-9630c6bc3473"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="326" y="0" width="13" height="26" uuid="a760dd54-55c4-4519-96c9-0c4487bcd955"/>
+				<textElement>
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[$]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="13" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="515" y="0" width="40" height="13" backcolor="#E6E6E6" uuid="76d43228-0f0a-4438-92de-3bbcb94c85bd"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="515" height="13" backcolor="#E6E6E6" uuid="6781a8fc-c2ef-476c-afc8-cdb0176f84a4"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="19" y="0" width="100" height="13" uuid="1aa7513e-6206-451c-b6f2-a148e04a5b6d"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="440" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement x="0" y="32" width="555" height="329" uuid="41408166-046e-417b-9640-9adf9d9cddfa"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{id_Venta}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{id_Venta}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{total}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot>
+						<seriesColor seriesOrder="0" color="#87519A"/>
+						<seriesColor seriesOrder="1" color="#D718A8"/>
+						<seriesColor seriesOrder="2" color="#31E9B8"/>
+						<seriesColor seriesOrder="3" color="#4EDD18"/>
+						<seriesColor seriesOrder="4" color="#3B2B98"/>
+						<seriesColor seriesOrder="5" color="#49A63C"/>
+						<seriesColor seriesOrder="6" color="#9119BA"/>
+						<seriesColor seriesOrder="7" color="#ED5F18"/>
+						<seriesColor seriesOrder="8" color="#606FF9"/>
+						<seriesColor seriesOrder="9" color="#BBBD77"/>
+						<seriesColor seriesOrder="10" color="#192A40"/>
+						<seriesColor seriesOrder="11" color="#2A00F7"/>
+						<seriesColor seriesOrder="12" color="#39D029"/>
+						<seriesColor seriesOrder="13" color="#72F76B"/>
+						<seriesColor seriesOrder="14" color="#17FBCE"/>
+						<seriesColor seriesOrder="15" color="#3DB9BF"/>
+						<seriesColor seriesOrder="16" color="#F9CFF4"/>
+						<seriesColor seriesOrder="17" color="#697CC1"/>
+					</plot>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+			<textField>
+				<reportElement x="326" y="4" width="194" height="29" uuid="f6012d30-db9e-48a5-af6f-1887cc0c50ca"/>
+				<textElement>
+					<font size="22" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="168" y="4" width="157" height="28" uuid="bd97b6a9-68e9-4fe1-b8d3-fd551c5bcd78"/>
+				<textElement>
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUMA TOTAL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="316" y="4" width="18" height="29" uuid="3d401b00-fc77-4507-9e0a-cb0f38073f88"/>
+				<textElement>
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[$]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
